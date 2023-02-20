@@ -1,9 +1,21 @@
 # import statements
 
 # functions go here
+def not_blank(question):
+    valid = False
 
+    # while valid= False, continue asking
+
+    while not valid:
+        response = input(question)
+
+        if response != "":
+            return response
+        else:
+            print("Sorry - This can't be blank, please enter your name")
 
 # ******** Main Routine ********
+
 
 # set up dictionaries / lists needed to hold data
 
@@ -12,6 +24,7 @@
 # Loop to get tickets details
 
     # Get name (can't be blank)
+    not_blank("Name:")
 
     # Get age ( between 12 and 130)
 

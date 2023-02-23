@@ -6,12 +6,15 @@ name = ""
 
 # if tickets less than max continue loop
 
-while name != "xxx" and count < max_tickets:
+while count < max_tickets:
     name = input("name: ")
-    count += 1
+    if name != "xxx":
+        count += 1
     tickets_left = max_tickets - count
     if tickets_left > 0:
-        print("You have sold " + str(count) + " tickets")
-        print("There are " + str(tickets_left) + " tickets left.")
+        print("You have sold {} tickets".format(count))
+        print("There are {} tickets left.".format(tickets_left))
     else:
         print("You have sold all the tickets!")
+    if name == "xxx":
+        break

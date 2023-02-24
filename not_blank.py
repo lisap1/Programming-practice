@@ -10,12 +10,17 @@ def not_blank(question):
     while not valid:
         response = input(question)
 
-        if response != "":
+        if response != "" and response.isalpha():
             return response
-        else:
+        elif response == "":
             print("Sorry - This can't be blank, please enter your name")
+        elif not response.isalpha():
+            print("Sorry - Your name cannot contain numbers or symbols")
+        else:
+            print("Error - Please try again")
 
 
 # Main Routine goes here
 
-not_blank("Name:")
+not_blank("Name: ")
+

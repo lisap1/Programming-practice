@@ -7,15 +7,40 @@ name = ""
 # functions go here
 def not_blank(question):
     valid = False
-    
+
 # while valid= False, continue asking
     while not valid:
         response = input(question)
 
-        if response != "":
+        if response != "" and response.isalpha():
             return response
-        else:
+        elif response == "":
             print("Sorry - This can't be blank, please enter your name")
+        elif not response.isalpha():
+            print("Sorry - Your name cannot contain numbers or symbols")
+        else:
+            print("Error - Please try again")
+
+
+def int_check(question, low_num, high_num):
+    # error message
+    error = "Please enter a whole number between {} and {}"\
+        .format(low_num, high_num)
+    valid = False
+    while not valid:
+        # ask user for number and check if valid
+        try:
+            response = int(input(question))
+
+            if low_num <= response <= high_num:
+                return response
+            else:
+                print(error)
+
+        # if integer is not present, print error
+        except ValueError:
+            print(error)
+
 
 # ******** Main Routine ********
 
@@ -29,6 +54,10 @@ def not_blank(question):
 while count < max_tickets:
     # Get name (can't be blank)
     not_blank("Name:")
+
+    # Get age ( between 12 and 130)
+    int_check("Age: ", 12, 130)
+
     # count tickets
     if name != "xxx":
         count += 1
@@ -42,8 +71,6 @@ while count < max_tickets:
     # exit code
     if name == "xxx":
         break
-
-    # Get age ( between 12 and 130)
 
     # Calculate ticket price
 

@@ -22,4 +22,4 @@ def int_check(question, low_num, high_num):
 # main routine goes here
 int_check("Age: ", 12, 130)
 
-# low_num, high_num doesn't work
+

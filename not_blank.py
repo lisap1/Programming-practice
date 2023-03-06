@@ -9,7 +9,7 @@ def not_blank(question):
 # while valid= False, continue asking
     while not valid:
         response = input(question)
-
+        # Verifying whether name doesn't contain numbers or symbols
         if response != "" and response.isalpha():
             return response
         elif response == "":

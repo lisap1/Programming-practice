@@ -63,6 +63,8 @@ while count < max_tickets:
     if age > 130:
         print("Sorry - You are too old, this looks like a mistake")
         continue
+    # ticket price calculations go here
+
     # count tickets
     if name != "xxx":
         count += 1

@@ -1,7 +1,8 @@
 # import statements
-count = 0
+ticket_count = 0
 max_tickets = 5
 name = ""
+profit = 0
 
 
 # functions go here
@@ -35,8 +36,7 @@ def int_check(question, low_num, high_num):
             response = int(input(question))
             return response
 
-        # if integer is not present, print error
-        except ValueError:
+        except ValueError:   # if integer is not present, print error
             print(error)
 
 
@@ -49,11 +49,12 @@ def int_check(question, low_num, high_num):
 
 # Loop to get tickets details
 
-while count < max_tickets:
+while ticket_count < max_tickets:
     # Get name (can't be blank)
     name = not_blank("Name: ")
     # exit code
     if name == "xxx":
+        print("Profit from tickets : ${:.2f}".format(profit))
         break
     # Get age ( between 12 and 130)
     age = int_check("Age: ", 12, 130)
@@ -64,15 +65,26 @@ while count < max_tickets:
         print("Sorry - You are too old, this looks like a mistake")
         continue
     # ticket price calculations go here
+    if age < 16:
+        ticket_price = 7.5
+    elif age >= 65:
+        ticket_price = 6.5
+    else:
+        ticket_price = 10.5
 
-    # count tickets
+    profit_made = ticket_price - 5
+    profit += profit_made
+
+    print("{} : ${:.2f}".format(name, ticket_price))
+
+    # ticket_count tickets
     if name != "xxx":
-        count += 1
-    tickets_left = max_tickets - count
+        ticket_count += 1
+    tickets_left = max_tickets - ticket_count
     # display tickets sold and tickets left
     if tickets_left > 0:
         print("You have sold {} tickets. \nThere are {} tickets left.".format
-              (count, tickets_left))
+              (ticket_count, tickets_left))
     else:
         print("You have sold all the tickets!")
 

@@ -30,7 +30,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
-  <component name="RunManager" selected="Python.Ticket_prices">
+  <component name="RunManager" selected="Python.00_MMF_base">
     <configuration name="00_MMF_base" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Programming-practice" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -138,8 +138,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.Ticket_prices" />
         <item itemvalue="Python.00_MMF_base" />
+        <item itemvalue="Python.Ticket_prices" />
         <item itemvalue="Python.age_checker" />
         <item itemvalue="Python.not_blank" />
         <item itemvalue="Python.Ticket_loop" />

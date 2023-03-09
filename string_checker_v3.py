@@ -10,13 +10,14 @@ valid_snacks = [
 ]
 
 # initialise variables
-snack_ok = ""
-snack = ""
-snack_amount = ""
-
-
 # loop to make testing easier
-for item in range(0, 3):
+
+
+def snack_checker():
+    snack_ok = ""
+    snack = ""
+    snack_amount = ""
+
     # ask user for the snacks they want
     snack_wanted = input("Snack: ").lower()
 
@@ -36,3 +37,6 @@ for item in range(0, 3):
         print("Snack choice: ", snack_amount)
     else:
         print("Invalid choice")
+
+
+snack_checker()

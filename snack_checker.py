@@ -17,6 +17,7 @@ snack_response = ""
 def snack_checker():
     snack_ok = ""
     snack_amount = ""
+    num_snacks = ""
 
     # ask user for the snacks they want
     snack_wanted = input("Snack: ").lower()
@@ -26,9 +27,10 @@ def snack_checker():
         if snack_wanted in var_list:
             snack = var_list[0].title()
             snack_ok = "yes"
-            num_snacks = input("How many items of " + snack + ": ")
-            snack_amount = str(num_snacks + " " + snack)
-            break
+            while not num_snacks.isdigit():
+                num_snacks = input("How many items of " + snack + ": ")
+                print(num_snacks)
+                snack_amount = str(num_snacks + " " + snack)
         else:
             snack_ok = "no"
 
@@ -56,7 +58,7 @@ def yes_no(to_check):
 
 # main routine
 while snack_response != "no":
-    snacks_question = yes_no(["yes", "no"])
+    snacks_question = yes_no(["yes", "y", "no", "n"])
     if snacks_question == "yes":
         snack_checker()
     else:

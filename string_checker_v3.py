@@ -1,42 +1,57 @@
-# valid snacks holds list of all snacks
-# each item in valid snacks is a list with
-# valid options for each snack <full name, letter code (a - e)
-# and possible abbreviations etc.
+def string_check(choice, options):
+
+    for var_list in options:
+
+        if choice in var_list:
+            chosen = var_list[0].title()
+            is_valid = "yes"
+            break
+        else:
+            is_valid = "no"
+
+    if is_valid == "yes":
+        return chosen
+    else:
+        return "invalid choice"
+
+
 valid_snacks = [
     ["popcorn", "p", "corn", "a"],
     ["M&M's", "m&m's", "mms", "m", "m and m", "b"],
-    ["pita chips", "chips","pc", "pita", "c"],
+    ["pita chips", "chips", "pc", "pita", "c"],
     ["water", "w", "d"]
 ]
 
-# initialise variables
-# loop to make testing easier
+yes_no = [
+    ["yes", "y"],
+    ["no", "n"]
+]
 
+snack_order = []
 
-def snack_checker():
-    snack_ok = ""
-    snack = ""
-    snack_amount = ""
+check_snack = "invalid choice"
+while check_snack == "invalid choice":
+    want_snack = input("do you want to order snacks: ").lower()
+    check_snack = string_check(want_snack, yes_no)
 
-    # ask user for the snacks they want
-    snack_wanted = input("Snack: ").lower()
+if check_snack == "yes":
+    desired_snack = ""
+    while desired_snack != "xxx":
+        desired_snack = input("snack: ").lower()
 
-    for var_list in valid_snacks:
-        # if the snack wanted is in one of the lists, return full name
-        if snack_wanted in var_list:
-            snack = var_list[0].title()
-            snack_ok = "yes"
-            num_snacks = input("How many items of " + snack + ": ")
-            snack_amount = str(num_snacks + " " + snack)
+        if desired_snack == "xxx":
             break
-        else:
-            snack_ok = "no"
 
-    # if the snack is ok ask question again
-    if snack_ok == "yes":
-        print("Snack choice: ", snack_amount)
-    else:
-        print("Invalid choice")
+        snack_choice = string_check(desired_snack, valid_snacks)
+        print("snack choice: ", snack_choice)
 
+        if snack_choice != "xxx" and snack_choice != "invalid choice":
+            snack_order.append(snack_choice)
 
-snack_checker()
+print()
+if len(snack_order) == 0:
+    print("snacks Ordered: None")
+else:
+    print("Snacks Ordered: ")
+    for item in snack_order:
+        print(item)

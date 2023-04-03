@@ -1,10 +1,5 @@
 import re
-# import statements
-ticket_count = 0
-max_tickets = 5
-name = ""
-profit = 0
-
+import pandas
 
 # functions go here
 # checks name is valid
@@ -45,7 +40,6 @@ def int_check(question, low_num, high_num):
 def string_check(choice, options):
 
     for var_list in options:
-
         if choice in var_list:
             chosen = var_list[0].title()
             is_valid = "yes"
@@ -109,56 +103,29 @@ def get_snack():
             snack_order.append(amount_snack)
 
 
-# ******** Main Routine ********
-# set up dictionaries / lists needed to hold data
+# check price based on age
+def age_price():
+    valid = False
+    while not valid:
+        age = int_check("Age: ", 12, 130)
+        if age < 12:
+            print("Sorry - You must be over the age of 11 to buy tickets")
+            continue
+        if age > 130:
+            print("Sorry - You are too old, this looks like a mistake")
+            continue
+        # ticket price calculations go here
+        if age < 16:
+            price = 7.5
+        elif age >= 65:
+            price = 6.5
+        else:
+            price = 10.5
+        return price
 
-# ask user if they have used the program before and show instructions if necessary
 
-# Loop to get tickets details
-
-while ticket_count < max_tickets:
-    # Get name (can't be blank)
-    name = not_blank("Name: ")
-    # exit code
-    if name == "xxx":
-        print("Profit from tickets : ${:.2f}".format(profit))
-        break
-    # Get age ( between 12 and 130)
-    age = int_check("Age: ", 12, 130)
-    if age < 12:
-        print("Sorry - You must be over the age of 11 to buy tickets")
-        continue
-    if age > 130:
-        print("Sorry - You are too old, this looks like a mistake")
-        continue
-    # ticket price calculations go here
-    if age < 16:
-        ticket_price = 7.5
-    elif age >= 65:
-        ticket_price = 6.5
-    else:
-        ticket_price = 10.5
-
-    profit_made = ticket_price - 5
-    profit += profit_made
-
-    print("{} : ${:.2f}".format(name, ticket_price))
-
-    # ticket_count tickets
-    if name != "xxx":
-        ticket_count += 1
-    tickets_left = max_tickets - ticket_count
-    # display tickets sold and tickets left
-    if tickets_left > 0:
-        print("You have sold {} tickets. \nThere are {} tickets left.".format
-              (ticket_count, tickets_left))
-    else:
-        print("You have sold all the tickets!")
-
-    # Calculate ticket price
-
-    # Loop to ask for snacks
-    # valid options for yes / no questions
+# show snack order
+def order():
     yes_no = [
         ["yes", "y"],
         ["no", "n"]
@@ -175,16 +142,76 @@ while ticket_count < max_tickets:
         get_order = get_snack()
     else:
         get_order = []
+    return get_order
 
+
+def ticket_display(names, count):
+    if names != "xxx":
+        count += 1
+    tickets_left = max_tickets - count
+    # display tickets sold and tickets left
+    if tickets_left > 0:
+        print("You have sold {} tickets. \nThere are {} tickets left.".format
+              (count, tickets_left))
+        return count
+    else:
+        print("You have sold all the tickets!")
+
+
+# ******** Main Routine ********
+# set up dictionaries / lists needed to hold data
+# import statements
+max_tickets = 5
+name = ""
+profit = 0
+ticket_count = 0
+
+all_names = []
+all_tickets = []
+
+# data frame dictionary
+movie_data_dict = {
+    'Name': all_names,
+    'Ticket': all_tickets
+}
+
+# ask user if they have used the program before and show instructions if necessary
+
+# Loop to get tickets details
+while ticket_count < max_tickets:
+    # Get name (can't be blank)
+    name = not_blank("Name: ")
+    # exit code
+    if name == "xxx":
+        # print details
+        movie_frame = pandas.DataFrame(movie_data_dict)
+        print(movie_frame)
+        print("Profit from tickets : ${:.2f}".format(profit))
+        break
+    # Get age ( between 12 and 130)
+    ticket_price = age_price()
+    profit_made = ticket_price - 5
+    profit += profit_made
+
+    # add names and ticket price to list
+    all_names.append(name)
+    all_tickets.append(ticket_price)
+
+    print("{} : ${:.2f}".format(name, ticket_price))
+
+    # count tickets
+    ticket_count = ticket_display(name, ticket_count)
+
+    # Loop to ask for snacks
+    total_order = order()
     print()
-    if len(get_order) == 0:
+    if len(total_order) == 0:
         print("Snacks ordered: None")
     else:
         print("Snacks ordered: ")
-        for item in get_order:
+        for item in total_order:
             print(item)
     print()
-
     # Calculate snack price
 
     # ask for payment method ( and apply surcharge if necessary)

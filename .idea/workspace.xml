@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="fccb0d83-7750-4c51-ab4e-e155bf501e2d" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/tickets_snacks_v1.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -41,7 +42,7 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$/string_checker.py" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
-  <component name="RunManager" selected="Python.snack_dataframe_v1">
+  <component name="RunManager" selected="Python.tickets_snacks_v1">
     <configuration name="00_MMF_base" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Programming-practice" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -126,7 +127,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="string_checker+analyser" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="tickets_snacks_v1" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Programming-practice" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -138,7 +139,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/string_checker+analyser.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/tickets_snacks_v1.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -149,11 +150,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.tickets_snacks_v1" />
         <item itemvalue="Python.snack_dataframe_v1" />
         <item itemvalue="Python.00_MMF_base_v3" />
         <item itemvalue="Python.00_MMF_base_v2" />
         <item itemvalue="Python.00_MMF_base" />
-        <item itemvalue="Python.string_checker+analyser" />
       </list>
     </recent_temporary>
   </component>

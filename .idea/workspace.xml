@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="fccb0d83-7750-4c51-ab4e-e155bf501e2d" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/00_MMF_base_v4.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/00_MMF_base_v4.py" beforeDir="false" afterPath="$PROJECT_DIR$/00_MMF_base_v4.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -150,9 +151,9 @@
     <recent_temporary>
       <list>
         <item itemvalue="Python.00_MMF_base_v4" />
+        <item itemvalue="Python.tickets_snacks_v1" />
         <item itemvalue="Python.surcharge_v2" />
         <item itemvalue="Python.Surcharge_cash_credit" />
-        <item itemvalue="Python.tickets_snacks_v1" />
         <item itemvalue="Python.snack_dataframe_v1" />
       </list>
     </recent_temporary>

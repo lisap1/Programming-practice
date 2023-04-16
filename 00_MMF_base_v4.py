@@ -153,8 +153,8 @@ def ticket_display(names, count):
     tickets_left = max_tickets - count
     # display tickets sold and tickets left
     if tickets_left > 0:
-        print("You have sold {} tickets. \nThere are {} tickets left.".format
-              (count, tickets_left))
+        print("There are {} tickets left.".format
+              (tickets_left))
         return count
     else:
         print("You have sold all the tickets!")
@@ -188,6 +188,12 @@ ticket_count = 0
 
 all_names = []
 all_tickets = []
+popcorn = []
+mms = []
+pita_chips = []
+water = []
+
+snack_lists = [popcorn, mms, pita_chips, water]
 
 pay_method = [
     ["cash", "ca"],
@@ -197,9 +203,20 @@ pay_method = [
 # data frame dictionary
 movie_data_dict = {
     'Name': all_names,
-    'Ticket': all_tickets
+    'Ticket': all_tickets,
+    'Popcorn': popcorn,
+    'Water': water,
+    'Pita Chips': pita_chips,
+    'M&Ms': mms,
 }
 
+price_dict = {
+    'Popcorn': 2.5,
+    'Water': 2,
+    'Pita Chips': 4.5,
+    'M&Ms': 3,
+    'Orange Juice': 3.25
+}
 # ask user if they have used the program before and show instructions if necessary
 
 # Loop to get tickets details
@@ -210,7 +227,22 @@ while ticket_count < max_tickets:
     if name == "xxx":
         # print details
         movie_frame = pandas.DataFrame(movie_data_dict)
+        movie_frame = movie_frame.set_index("Name")
+
+        # create column called 'Sub total'
+        print()
+
+        movie_frame["Sub Total"] = \
+            movie_frame['Ticket'] + \
+            movie_frame['Popcorn'] * price_dict['Popcorn'] + \
+            movie_frame['Water'] * price_dict['Water'] + \
+            movie_frame['Pita Chips'] * price_dict['Pita Chips'] + \
+            movie_frame['M&Ms'] * price_dict['M&Ms']
+
+        movie_frame = movie_frame.rename(columns={'Pita Chips': 'Chips'})
         print(movie_frame)
+        print()
+        # Calculate total sales and profit
         print("Profit from tickets : ${:.2f}".format(profit))
         break
     # Get age ( between 12 and 130)
@@ -224,28 +256,35 @@ while ticket_count < max_tickets:
 
     print("{} : ${:.2f}".format(name, ticket_price))
 
-    # count tickets
-    ticket_count = ticket_display(name, ticket_count)
-
     # Loop to ask for snacks
     total_order = order()
-    print()
-    if len(total_order) == 0:
-        print("Snacks ordered: None")
-    else:
-        print("Snacks ordered: ")
-        for item in total_order:
-            print(item)
-    print()
+
     # Calculate snack price
+
+    for item in snack_lists:
+        item.append(0)
+
+    for item in total_order:
+        if len(item) > 0:
+            to_find = (item[1])
+            amount = (item[0])
+            add_list = movie_data_dict[to_find]
+            add_list[-1] = amount
+
+    count = 0
+    for client_order in total_order:
+        # assume no snacks have been bought
+
+        # print snack lists
+        # get order (hard coded for easy testing)
+        snack_order = total_order[count]
+        count += 1
 
     # ask for payment method ( and apply surcharge if necessary)
     surcharge = payment_method(ticket_price)
     total = ticket_price + surcharge
+    # display tickets left
+    ticket_count = ticket_display(name, ticket_count)
 
-    print("Name: {} | Subtotal: ${:.2f} | Surcharge: ${:.2f} |"
-          "Total Payable: ${:.2f}".format(name, ticket_price, surcharge, total))
-
-# Calculate total sales and profit
 
 # Output data to text files

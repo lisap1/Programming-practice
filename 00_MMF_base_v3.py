@@ -1,6 +1,7 @@
 import re
 import pandas
 
+
 # functions go here
 # checks name is valid
 def not_blank(question):
@@ -38,7 +39,8 @@ def int_check(question, low_num, high_num):
 
 # checks string is valid
 def string_check(choice, options):
-
+    is_valid = ""
+    chosen = ""
     for var_list in options:
         if choice in var_list:
             chosen = var_list[0].title()

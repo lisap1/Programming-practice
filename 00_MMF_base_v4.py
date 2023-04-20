@@ -160,7 +160,7 @@ def ticket_display(names, count):
         print("You have sold all the tickets!")
 
 
-def payment_method(price):
+def payment_method():
     how_pay = "invalid choice"
     while how_pay == "invalid choice":
         how_pay = input("Please choose a payment method (cash or credit): ")
@@ -171,7 +171,7 @@ def payment_method(price):
     # ask for subtotal (testing purposes)
 
     if how_pay == "Credit":
-        charge = 0.05 * price
+        charge = 0.05
         return charge
     else:
         charge = 0
@@ -195,6 +195,9 @@ water = []
 
 snack_lists = [popcorn, mms, pita_chips, water]
 
+# store surcharge multipliers
+surcharge_mult_list = []
+
 pay_method = [
     ["cash", "ca"],
     ["credit", "cr"]
@@ -208,6 +211,7 @@ movie_data_dict = {
     'Water': water,
     'Pita Chips': pita_chips,
     'M&Ms': mms,
+    'Surcharge_Multiplier': surcharge_mult_list
 }
 
 price_dict = {
@@ -239,8 +243,21 @@ while ticket_count < max_tickets:
             movie_frame['Pita Chips'] * price_dict['Pita Chips'] + \
             movie_frame['M&Ms'] * price_dict['M&Ms']
 
-        movie_frame = movie_frame.rename(columns={'Pita Chips': 'Chips'})
-        print(movie_frame)
+        movie_frame["Surcharge"] = \
+            movie_frame["Sub Total"] * movie_frame["Surcharge_Multiplier"]
+
+        movie_frame["Total"] = movie_frame["Sub Total"] + \
+            movie_frame["Surcharge"]
+
+        movie_frame = movie_frame.rename(columns={'Pita Chips': 'Chips',
+                                                  'Surcharge_Multiplier': 'SM'})
+        pandas.set_option('display.max_columns', None)
+
+        print_all = input("Print all columns? y for yes: ")
+        if print_all == "y":
+            print(movie_frame)
+        else:
+            print(movie_frame[['Ticket', 'Sub Total', 'Surcharge', 'Total']])
         print()
         # Calculate total sales and profit
         print("Profit from tickets : ${:.2f}".format(profit))
@@ -281,8 +298,9 @@ while ticket_count < max_tickets:
         count += 1
 
     # ask for payment method ( and apply surcharge if necessary)
-    surcharge = payment_method(ticket_price)
-    total = ticket_price + surcharge
+    surcharge = payment_method()
+    surcharge_mult_list.append(surcharge)
+    print(surcharge_mult_list)
     # display tickets left
     ticket_count = ticket_display(name, ticket_count)
 
